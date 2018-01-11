@@ -1,0 +1,27 @@
+<div class="container">
+  <!--<p class="h1" style="">HELLO</p>-->
+  <div class="row">
+    <app-cockpit
+      (serverCreated)="onServerAdded($event)"
+      (blueprintAdded)="onBluprintAdded($event)"
+    ></app-cockpit>
+  </div>
+  <hr class="col-xs-10">
+  <div class="row">
+    <div class="container">
+      <!--<app-server-element-->
+        <!--*ngFor="let server of servers"-->
+        <!--[element]="server"-->
+      <!--&gt;</app-server-element>-->
+
+      <!--(2)-->
+      <app-server-element
+        *ngFor="let server of servers"
+        [eleAlias]="server"
+      >
+        <p *ngIf="server.type === 'server'" style="color: red">{{ server.content }}</p>
+        <p *ngIf="server.type === 'blueprint'">{{ server.content }}</p>
+      </app-server-element>
+    </div>
+  </div>
+</div>
