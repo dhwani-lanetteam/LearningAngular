@@ -22,6 +22,8 @@ import { GoWildDirective } from './directivePractiseComponents/more-on-renderer/
 import { GrayBgHighlightDirective } from './directivePractiseComponents/gray-bg-highlight/gray-bg-highlight.directive';
 import { UnlessDirective } from './directivePractiseComponents/unless/unless.directive';
 import { DropdownDirective } from './shared/dropdown.directive';
+import {ShoppinglistService} from "./shopping-list/service/shoppinglist.service";
+import {CommonService} from "./shared/common.service";
 
 
 
@@ -54,7 +56,10 @@ import { DropdownDirective } from './shared/dropdown.directive';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ShoppinglistService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

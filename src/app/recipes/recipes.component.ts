@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Recipe} from "./recepe.model";
 import {RecipeService} from "./service/recipe.service";
+import {Ingredient} from "../shared/ingredient.model";
 
 @Component({
   selector: 'app-recipes',
@@ -16,9 +17,14 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit() {
     this.recipeService.recipeSelectedEmitter.subscribe((recipe: Recipe)=>{
-      alert("name : " + recipe.name);
+      // alert("name : " + recipe.name);
       this.receivedRecipe = recipe;
-    })
+    });
+  }
+
+  toShoppingListCLickSubscribe(ingredients: Ingredient[]){
+    console.log("In toShoppingListCLickSubscribe");
+    console.log(ingredients);
   }
 
   // onReceiveRecipeItem(event){

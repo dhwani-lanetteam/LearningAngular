@@ -15,6 +15,7 @@
       *ngIf="receivedRecipe; else infoText"
       [recipeToDisplay]="receivedRecipe"
     ></app-recipe-detail>
+    <!--(toShoppingListCLickEmtr)="toShoppingListCLickSubscribe($event)"-->
     <ng-template #infoText>
       <p>Please Select Recipe</p>
     </ng-template>

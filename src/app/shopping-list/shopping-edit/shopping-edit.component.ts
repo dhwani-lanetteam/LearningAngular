@@ -1,5 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import {Ingredient} from "../../shared/ingredient.model";
+import {ShoppinglistService} from "../service/shoppinglist.service";
 
 @Component({
   selector: 'app-shopping-edit',
@@ -8,28 +9,37 @@ import {Ingredient} from "../../shared/ingredient.model";
 })
 export class ShoppingEditComponent implements OnInit {
 
-  @Output() ingredientAddEmitter = new EventEmitter<Ingredient>();
+  // @Output() ingredientAddEmitter = new EventEmitter<Ingredient>();
   @ViewChild('ingredientName') ingredientNameRef: ElementRef;
   @ViewChild('ingredientAmount') ingredientAmountRef: ElementRef;
 
-  constructor() { }
+  constructor(private shoppinglistService: ShoppinglistService) { }
 
   ngOnInit() {
+    this.shoppinglistService.ingredientEditedEmtr.subscribe((ingredient: Ingredient)=> {
+      console.log("This should be edited");
+      console.log("name : " + ingredient.name);
+      console.log("amount : " + ingredient.amount);
+    });
   }
 
-  onClearClick(){
-
-  }
-
-  onDeleteClick(){
-
-  }
+  // onClearClick(){
+  //
+  // }
+  //
+  // onDeleteClick(){
+  //
+  // }
 
   onAddClick(){
+    console.log("shopping-edit onAddClick");
     if (this.ingredientNameRef.nativeElement.value && this.ingredientAmountRef.nativeElement.value){
       // console.log(this.ingredientNameRef);
-      this.ingredientAddEmitter.emit(new Ingredient((this.ingredientNameRef.nativeElement.value).toLowerCase(), parseInt(this.ingredientAmountRef.nativeElement.value)));
+      this.shoppinglistService.onAddClick(this.ingredientNameRef.nativeElement.value, this.ingredientAmountRef.nativeElement.value);
     }
+    // else {
+    //   console.log("shopping-edit something missing");
+    // }
   }
 
 }

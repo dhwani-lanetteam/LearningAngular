@@ -14,11 +14,11 @@ export class AppComponent {
     switch(event.clickedTab) {
       case "shopping-list":
         // console.log("cliked tab : shoppinglist");
-        this.displayRecipes = false;
+        this.displayRecipes = true;
         break;
       case "recipes":
         // console.log("clicked tab : recipes");
-        this.displayRecipes = true;
+        this.displayRecipes = false;
         break;
       default:
         console.log("default case");
