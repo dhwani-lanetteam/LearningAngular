@@ -2,11 +2,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-header
-        (clickedTab)="onTabClicked($event)"
-      ></app-header>
-      <app-recipes *ngIf="displayRecipes === false"></app-recipes>
-      <app-shopping-list *ngIf="displayRecipes === true"></app-shopping-list>
+      <!--<app-header-->
+        <!--(clickedTab)="onTabClicked($event)"-->
+      <!--&gt;</app-header>-->
+      <app-header></app-header>
+      <router-outlet></router-outlet>
+      <!--<app-recipes *ngIf="displayRecipes === false"></app-recipes>-->
+      <!--<app-shopping-list *ngIf="displayRecipes === true"></app-shopping-list>-->
     </div>
   </div>
 </div>

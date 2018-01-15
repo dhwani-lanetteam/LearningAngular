@@ -14,12 +14,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onShoppingListClick(clickedElement: string = ""){
-    this.clickedTab.emit({clickedTab: clickedElement});
-  }
-
-  onRecipeClick(clickedElement: string = ""){
-    this.clickedTab.emit({clickedTab: clickedElement});
-  }
+  // onShoppingListClick(clickedElement: string = ""){
+  //   this.clickedTab.emit({clickedTab: clickedElement});
+  // }
+  //
+  // onRecipeClick(clickedElement: string = ""){
+  //   this.clickedTab.emit({clickedTab: clickedElement});
+  // }
 
 }

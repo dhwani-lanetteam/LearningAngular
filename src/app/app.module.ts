@@ -1,3 +1,4 @@
+import {Routes, RouterModule} from "@angular/router";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +26,16 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import {ShoppinglistService} from "./shopping-list/service/shoppinglist.service";
 import {CommonService} from "./shared/common.service";
 
-
+const appRoutes: Routes = [
+  {
+    path: "",
+    component: RecipesComponent
+  },
+  {
+    path: "shopping-list",
+    component: ShoppingListComponent
+  }
+];
 
 
 @NgModule({
@@ -54,7 +64,8 @@ import {CommonService} from "./shared/common.service";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     ShoppinglistService,
