@@ -10,8 +10,8 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import { ServerComponent } from './server/server.component';
-import { ServerElementComponent } from './server/server-element/server-element.component';
+// import { ServerComponent } from './server/server.component';
+// import { ServerElementComponent } from './server/server-element/server-element.component';
 import { CockpitComponent } from './server/cockpit/cockpit.component';
 import { OnlyOddComponent } from './directivePractiseComponents/only-odd/only-odd.component';
 import { NgSwitchDemoComponent } from './directivePractiseComponents/ng-switch-component/ng-switch-demo.component';
@@ -25,16 +25,57 @@ import { UnlessDirective } from './directivePractiseComponents/unless/unless.dir
 import { DropdownDirective } from './shared/dropdown.directive';
 import {ShoppinglistService} from "./shopping-list/service/shoppinglist.service";
 import {CommonService} from "./shared/common.service";
+import { ServersComponent } from './routing/servers/servers.component';
+import { EditServerComponent } from './routing/servers/edit-server/edit-server.component';
+import {ServerComponent} from "./routing/servers/server/server.component";
+import { UsersComponent } from './routing/users/users.component';
+import { UserComponent } from './routing/users/user/user.component';
+import { HomeComponent } from './routing/home/home.component';
+import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
+import {ServersService} from "./routing/servers/servers.service";
+
+// const appRoutes: Routes = [
+//   {
+//     path: "",
+//     component: RecipesComponent
+//   },
+//   {
+//     path: "shopping-list",
+//     component: ShoppingListComponent
+//   }
+// ];
 
 const appRoutes: Routes = [
   {
     path: "",
-    component: RecipesComponent
+    component: HomeComponent
   },
   {
-    path: "shopping-list",
-    component: ShoppingListComponent
+    path: "users",
+    component: UsersComponent,
+    children: [
+      {
+        path: ":id/:name",
+        component: UserComponent
+      }
+    ]
+  },
+  {
+    path: "servers",
+    component: ServersComponent,
+    children: [
+      {
+        path: ":id/edit",
+        component: EditServerComponent
+      },
+      {
+        path: ":id",
+        component: ServerComponent
+      }
+    ]
   }
+
 ];
 
 
@@ -49,7 +90,7 @@ const appRoutes: Routes = [
     ShoppingEditComponent,
     RecipesComponent,
     ServerComponent,
-    ServerElementComponent,
+    // ServerElementComponent,
     CockpitComponent,
     OnlyOddComponent,
     NgSwitchDemoComponent,
@@ -60,16 +101,24 @@ const appRoutes: Routes = [
     GoWildDirective,
     GrayBgHighlightDirective,
     UnlessDirective,
-    DropdownDirective
+    DropdownDirective,
+    ServersComponent,
+    EditServerComponent,
+    UsersComponent,
+    UserComponent,
+    HomeComponent
   ],
   imports: [
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
     ShoppinglistService,
-    CommonService
+    CommonService,
+    ServersService
   ],
   bootstrap: [AppComponent]
 })
