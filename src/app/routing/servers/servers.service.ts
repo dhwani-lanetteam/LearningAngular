@@ -14,6 +14,11 @@ export class ServersService {
       id: 3,
       name: 'Devserver',
       status: 'offline'
+    },
+    {
+      id: 4,
+      name: 'Dhwani',
+      status: 'online'
     }
   ];
 
