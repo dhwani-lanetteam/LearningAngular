@@ -1,4 +1,4 @@
-import {Routes, RouterModule} from "@angular/router";
+// import {Routes, RouterModule} from "@angular/router";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -35,6 +35,8 @@ import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
 import {ServersService} from "./routing/servers/servers.service";
 import { PageNotFoundComponent } from './routing/page-not-found/page-not-found.component';
+import {AppRoutingModule} from "./app-routing.module";
+import {AuthGuardService} from "./auth-guard.service";
 
 
 // const appRoutes: Routes = [
@@ -48,52 +50,52 @@ import { PageNotFoundComponent } from './routing/page-not-found/page-not-found.c
 //   }
 // ];
 
-const appRoutes: Routes = [
-  {
-    path: "",
-    component: HomeComponent
-  },
-  {
-    path: "users",
-    component: UsersComponent,
-    children: [
-      {
-        path: ":id/:name",
-        component: UserComponent
-      }
-    ]
-  },
-  {
-    path: "servers",
-    component: ServersComponent,
-    children: [
-      {
-        path: ":id/edit",
-        component: EditServerComponent
-      },
-      {
-        path: ":id",
-        component: ServerComponent
-      }
-    ]
-  },
-  {
-    path: "not-found",
-    component: PageNotFoundComponent
-  },
-  {
-    path: "something",
-    redirectTo: "/not-found" // this is the alternative of component. component loads specific component but redirectTo will lead to the specified route or path
-  },
-  // more convenient way to catch route not covered by app
-  // wildcard route
-  // it should be last element as routes are configured top to bottom
-  {
-    path: "**",
-    component: PageNotFoundComponent
-  }
-
-];
+// const appRoutes: Routes = [
+//   {
+//     path: "",
+//     component: HomeComponent
+//   },
+//   {
+//     path: "users",
+//     component: UsersComponent,
+//     children: [
+//       {
+//         path: ":id/:name",
+//         component: UserComponent
+//       }
+//     ]
+//   },
+//   {
+//     path: "servers",
+//     component: ServersComponent,
+//     children: [
+//       {
+//         path: ":id/edit",
+//         component: EditServerComponent
+//       },
+//       {
+//         path: ":id",
+//         component: ServerComponent
+//       }
+//     ]
+//   },
+//   {
+//     path: "not-found",
+//     component: PageNotFoundComponent
+//   },
+//   {
+//     path: "something",
+//     redirectTo: "/not-found" // this is the alternative of component. component loads specific component but redirectTo will lead to the specified route or path
+//   },
+//   // more convenient way to catch route not covered by app
+//   // wildcard route
+//   // it should be last element as routes are configured top to bottom
+//   {
+//     path: "**",
+//     component: PageNotFoundComponent
+//   }
+//
+// ];
 
 
 @NgModule({
@@ -131,12 +133,15 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    // RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [
     ShoppinglistService,
     CommonService,
-    ServersService
+    ServersService,
+    AuthGuardService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
