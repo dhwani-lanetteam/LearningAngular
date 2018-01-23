@@ -38,6 +38,7 @@ import { PageNotFoundComponent } from './routing/page-not-found/page-not-found.c
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthGuardService} from "./auth-guard.service";
 import {AuthService} from "./auth.service";
+import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
 
 
 // const appRoutes: Routes = [
@@ -142,7 +143,8 @@ import {AuthService} from "./auth.service";
     CommonService,
     ServersService,
     AuthGuardService,
-    AuthService
+    AuthService,
+    CanDeactivateGuard
   ],
   bootstrap: [AppComponent]
 })

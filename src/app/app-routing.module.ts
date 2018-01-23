@@ -8,6 +8,7 @@ import {UsersComponent} from "./routing/users/users.component";
 import {HomeComponent} from "./routing/home/home.component";
 import {Routes, RouterModule} from "@angular/router";
 import {AuthGuardService} from "./auth-guard.service";
+import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
 
 const appRoutes: Routes = [
   {
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     children: [
       {
         path: ":id/edit",
-        component: EditServerComponent
+        component: EditServerComponent,
+        canDeactivate: [CanDeactivateGuard] //angular will run this guard whenever I leave this component
       },
       {
         path: ":id",
