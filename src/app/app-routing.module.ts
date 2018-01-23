@@ -26,9 +26,12 @@ const appRoutes: Routes = [
   },
   {
     path: "servers",
+    // can be used to protect route or child route
     //takes array of all the guards you wanna apply to route
-    //apply to its child routes automatically
-    canActivate: [AuthGuardService],
+    //canActivate apply to its child routes automatically
+    // canActivate: [AuthGuardService],
+    //canActivateChild apply ti child only
+    canActivateChild: [AuthGuardService],
     component: ServersComponent,
     children: [
       {
