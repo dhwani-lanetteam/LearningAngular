@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServersService} from "../servers.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router, Data} from "@angular/router";
 
 @Component({
   selector: 'app-server',
@@ -14,13 +14,20 @@ export class ServerComponent implements OnInit {
 
   ngOnInit() {
     // debugger
-    if (this.activatedRoute.snapshot.params['id']){
-      this.server = this.serversService.getServer(+this.activatedRoute.snapshot.params['id']);
-    }
+    //---- server is fetched using activated route queryParams
+    // if (this.activatedRoute.snapshot.params['id']){
+    //   this.server = this.serversService.getServer(+this.activatedRoute.snapshot.params['id']);
+    // }
+    //
+    // this.activatedRoute.params.subscribe((param: Params) => {
+    //   this.server = this.serversService.getServer(+param['id']);
+    // })
 
-    this.activatedRoute.params.subscribe((param: Params) => {
-      this.server = this.serversService.getServer(+param['id']);
-    })
+    //---- server is loaded in advance using resolver
+    this.activatedRoute.data.subscribe((data: Data) => {
+      this.server = data['server']; //'server' shpould match with key defined in 'resolve' Offcourse !!!  check app-routing.module.ts
+
+    });
 
   }
 

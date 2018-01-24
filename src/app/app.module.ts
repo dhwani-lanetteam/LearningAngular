@@ -40,66 +40,7 @@ import {AuthGuardService} from "./auth-guard.service";
 import {AuthService} from "./auth.service";
 import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
 import {ErrorPageComponent} from "./routing/error-page/error-page.component";
-
-
-// const appRoutes: Routes = [
-//   {
-//     path: "",
-//     component: RecipesComponent
-//   },
-//   {
-//     path: "shopping-list",
-//     component: ShoppingListComponent
-//   }
-// ];
-
-// const appRoutes: Routes = [
-//   {
-//     path: "",
-//     component: HomeComponent
-//   },
-//   {
-//     path: "users",
-//     component: UsersComponent,
-//     children: [
-//       {
-//         path: ":id/:name",
-//         component: UserComponent
-//       }
-//     ]
-//   },
-//   {
-//     path: "servers",
-//     component: ServersComponent,
-//     children: [
-//       {
-//         path: ":id/edit",
-//         component: EditServerComponent
-//       },
-//       {
-//         path: ":id",
-//         component: ServerComponent
-//       }
-//     ]
-//   },
-//   {
-//     path: "not-found",
-//     component: PageNotFoundComponent
-//   },
-//   {
-//     path: "something",
-//     redirectTo: "/not-found" // this is the alternative of component. component loads specific component but redirectTo will lead to the specified route or path
-//   },
-//   // more convenient way to catch route not covered by app
-//   // wildcard route
-//   // it should be last element as routes are configured top to bottom
-//   {
-//     path: "**",
-//     component: PageNotFoundComponent
-//   }
-//
-// ];
-
+import {ServerResolverService} from "./routing/servers/server/server-resolver.service";
 
 @NgModule({
   declarations: [
@@ -146,7 +87,8 @@ import {ErrorPageComponent} from "./routing/error-page/error-page.component";
     ServersService,
     AuthGuardService,
     AuthService,
-    CanDeactivateGuard
+    CanDeactivateGuard,
+    ServerResolverService
   ],
   bootstrap: [AppComponent]
 })

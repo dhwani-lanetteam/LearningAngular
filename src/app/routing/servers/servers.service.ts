@@ -27,16 +27,16 @@ export class ServersService {
   }
 
   getServer(id: number) {
-    debugger
-    console.log("getServer : " + id);
+    // debugger
+    // console.log("getServer : " + id);
     const server = this.servers.find(
       (s) => {
-        console.log("s : ");
-        console.log(s);
+        // console.log("s : ");
+        // console.log(s);
         return s.id === (+id); //=== compares data type along with content. 3 not equals to "3"
       }
     );
-    console.log(server);
+    // console.log(server);
     return server;
   }
 

@@ -10,6 +10,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {AuthGuardService} from "./auth-guard.service";
 import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
 import {ErrorPageComponent} from "./routing/error-page/error-page.component";
+import {ServerResolverService} from "./routing/servers/server/server-resolver.service";
 
 const appRoutes: Routes = [
   {
@@ -43,7 +44,12 @@ const appRoutes: Routes = [
       },
       {
         path: ":id",
-        component: ServerComponent
+        component: ServerComponent,
+        resolve: {
+          //here name of property can be any valid key string(totally up to developer)
+          //server return by resolver will be assigned to the key server
+          server: ServerResolverService
+        }
       }
     ]
   },
