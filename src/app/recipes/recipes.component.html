@@ -11,14 +11,15 @@
     <!--<app-recipe-detail-->
       <!--[recipeToDisplay]="receivedRecipe"-->
     <!--&gt;</app-recipe-detail>-->
-    <app-recipe-detail
-      *ngIf="receivedRecipe; else infoText"
-      [recipeToDisplay]="receivedRecipe"
-    ></app-recipe-detail>
-    <!--(toShoppingListCLickEmtr)="toShoppingListCLickSubscribe($event)"-->
-    <ng-template #infoText>
-      <p>Please Select Recipe</p>
-    </ng-template>
+    <router-outlet></router-outlet>
+    <!--<app-recipe-detail-->
+      <!--*ngIf="receivedRecipe; else infoText"-->
+      <!--[recipeToDisplay]="receivedRecipe"-->
+    <!--&gt;</app-recipe-detail>-->
+    <!--&lt;!&ndash;(toShoppingListCLickEmtr)="toShoppingListCLickSubscribe($event)"&ndash;&gt;-->
+    <!--<ng-template #infoText>-->
+      <!--<p>Please Select Recipe</p>-->
+    <!--</ng-template>-->
     <div class=""></div>
   </div>
 </div>

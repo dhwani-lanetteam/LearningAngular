@@ -35,12 +35,14 @@ import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
 import {ServersService} from "./routing/servers/servers.service";
 import { PageNotFoundComponent } from './routing/page-not-found/page-not-found.component';
-import {AppRoutingModule} from "./app-routing.module";
+// import {AppRoutingModule} from "./app-routing.module";
+import {AppShoppinglistRouting} from "./app-shoppinglist-routing.module";
 import {AuthGuardService} from "./auth-guard.service";
 import {AuthService} from "./auth.service";
 import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
 import {ErrorPageComponent} from "./routing/error-page/error-page.component";
 import {ServerResolverService} from "./routing/servers/server/server-resolver.service";
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import {ServerResolverService} from "./routing/servers/server/server-resolver.se
     UserComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    RecipeStartComponent
   ],
   imports: [
     HttpModule,
@@ -79,7 +82,8 @@ import {ServerResolverService} from "./routing/servers/server/server-resolver.se
     BrowserModule,
     FormsModule,
     // RouterModule.forRoot(appRoutes)
-    AppRoutingModule
+    // AppRoutingModule
+    AppShoppinglistRouting
   ],
   providers: [
     ShoppinglistService,

@@ -1,17 +1,17 @@
-<!--SHOPPING LIST APP STARTS-->
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!--<div class="col-md-12">-->
-      <!--&lt;!&ndash;<app-header&ndash;&gt;-->
-        <!--&lt;!&ndash;(clickedTab)="onTabClicked($event)"&ndash;&gt;-->
-      <!--&lt;!&ndash;&gt;</app-header>&ndash;&gt;-->
-      <!--<app-header></app-header>-->
-      <!--<router-outlet></router-outlet>-->
-      <!--&lt;!&ndash;<app-recipes *ngIf="displayRecipes === false"></app-recipes>&ndash;&gt;-->
-      <!--&lt;!&ndash;<app-shopping-list *ngIf="displayRecipes === true"></app-shopping-list>&ndash;&gt;-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+<!--SHOPPING LIST APP STARTS--->
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!--<app-header-->
+        <!--(clickedTab)="onTabClicked($event)"-->
+      <!--&gt;</app-header>-->
+      <router-outlet></router-outlet>
+      <!--<app-recipes *ngIf="displayRecipes === false"></app-recipes>-->
+      <!--<app-shopping-list *ngIf="displayRecipes === true"></app-shopping-list>-->
+    </div>
+  </div>
+</div>
 <!--SHOPPING LIST APP ENDS here-->
 
 <!--<div class="container">-->
@@ -35,35 +35,35 @@
 <!--app-more-on-renderer ends-->
 
 <!--ROUTING STARTS HERE-->
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <ul class="nav nav-tabs">
-        <li
-          role="presentation"
-          [routerLinkActiveOptions] = "{exact: true}"
-          routerLinkActive="active"
-          class="active">
-          <a routerLink="/">Home</a>
-        </li>
-        <li
-          role="presentation"
-          routerLinkActive="active" >
-          <a routerLink="/servers">Servers</a>
-        </li>
-        <li
-          role="presentation"
-          routerLinkActive="active" >
-          <a [routerLink]="['/users']">Users</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+<!--<div class="container">-->
+  <!--<div class="row">-->
+    <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+      <!--<ul class="nav nav-tabs">-->
+        <!--<li-->
+          <!--role="presentation"-->
+          <!--[routerLinkActiveOptions] = "{exact: true}"-->
+          <!--routerLinkActive="active"-->
+          <!--class="active">-->
+          <!--<a routerLink="/">Home</a>-->
+        <!--</li>-->
+        <!--<li-->
+          <!--role="presentation"-->
+          <!--routerLinkActive="active" >-->
+          <!--<a routerLink="/servers">Servers</a>-->
+        <!--</li>-->
+        <!--<li-->
+          <!--role="presentation"-->
+          <!--routerLinkActive="active" >-->
+          <!--<a [routerLink]="['/users']">Users</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+    <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+      <!--<router-outlet></router-outlet>-->
+    <!--</div>-->
+  <!--</div>-->
   <!--<div class="row">-->
   <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
   <!--<app-home></app-home>-->
@@ -79,6 +79,6 @@
   <!--<app-servers></app-servers>-->
   <!--</div>-->
   <!--</div>-->
-</div>
+<!--</div>-->
 
 <!--ROUTING ENDS HERE-->

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() clickedTab = new EventEmitter<{clickedTab: string}>();
+  // @Output() clickedTab = new EventEmitter<{clickedTab: string}>();
 
   constructor() { }
 

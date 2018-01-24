@@ -1,6 +1,8 @@
-<a class="list-group-item clearfix"
-   (click)="onRecipeItemClick($event)"
-   href="#">
+<!--my approach of onClick-->
+<!--(click)="onRecipeItemClick()"-->
+<a class="list-group-item clearfix cursor-type"
+    [routerLink]="['/recipes',recipe.name]"
+   >
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
     <p class="list-group-item text">{{ recipe.description }}</p>

@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Recipe} from "../../recepe.model";
 import {RecipeService} from "../../service/recipe.service";
+import {ActivatedRouteSnapshot, ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-recipe-item',
@@ -12,13 +13,19 @@ export class RecipeItemComponent implements OnInit {
   @Input('recipe') recipe: Recipe;
   // @Output() recipeClickedEmitter = new EventEmitter<Recipe>();
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService,
+  private router: Router) { }
 
   ngOnInit() {
   }
 
-  onRecipeItemClick(){
-    // this.recipeClickedEmitter.emit(this.recipe);
-    this.recipeService.recipeSelectedEmitter.emit(this.recipe);
-  }
+  //my approach of onClick of item
+  // onRecipeItemClick(){
+  //   // this.recipeClickedEmitter.emit(this.recipe);
+  //   // this.recipeService.recipeSelectedEmitter.emit(this.recipe);
+  //   console.log("onRecipeItemClick called");
+  //   console.log("this recipe : ");
+  //   console.log(this.recipe);
+  //   this.router.navigate(["/recipes",this.recipe.name]);
+  // }
 }

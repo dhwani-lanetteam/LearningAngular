@@ -36,22 +36,22 @@ const appRoutes: Routes = [
     //canActivateChild apply ti child only
     canActivateChild: [AuthGuardService],
     component: ServersComponent,
-    children: [
-      {
-        path: ":id/edit",
-        component: EditServerComponent,
-        canDeactivate: [CanDeactivateGuard] //angular will run this guard whenever I leave this component
-      },
-      {
-        path: ":id",
-        component: ServerComponent,
-        resolve: {
-          //here name of property can be any valid key string(totally up to developer)
-          //server return by resolver will be assigned to the key server
-          server: ServerResolverService
+      children: [
+        {
+          path: ":id/edit",
+          component: EditServerComponent,
+          canDeactivate: [CanDeactivateGuard] //angular will run this guard whenever I leave this component
+        },
+        {
+          path: ":id",
+          component: ServerComponent,
+          resolve: {
+            //here name of property can be any valid key string(totally up to developer)
+            //server return by resolver will be assigned to the key server
+            server: ServerResolverService
+          }
         }
-      }
-    ]
+      ]
   },
   {
     path: "not-found",

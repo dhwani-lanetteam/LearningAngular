@@ -2,6 +2,7 @@ import {Injectable, EventEmitter} from '@angular/core';
 import {Recipe} from "../recepe.model";
 import {Ingredient} from "../../shared/ingredient.model";
 import {ShoppinglistService} from "../../shopping-list/service/shoppinglist.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Injectable()
 export class RecipeService {
@@ -38,7 +39,9 @@ export class RecipeService {
     )
   ];
 
-  constructor(private shoppingListServide: ShoppinglistService) { }
+  constructor(private shoppingListServide: ShoppinglistService,
+              private activatedRoute: ActivatedRoute
+  ) { }
 
   getRecipes(){
     return this.recipes.slice();
@@ -46,6 +49,19 @@ export class RecipeService {
 
   addIngredientToShoppingList(ingredients: Ingredient[]){
     this.shoppingListServide.addIngredients(ingredients);
+  }
+
+  getRecipe(name: string){
+    console.log("getRecipe called from recipe service");
+    const recipe = this.recipes.find(
+      (r) => {
+        // console.log("s : ");
+        // console.log(s);
+        return r.name === name; //=== compares data type along with content. 3 not equals to "3"
+      }
+    );
+    // console.log(server);
+    return recipe;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Recipe} from "./recepe.model";
 import {RecipeService} from "./service/recipe.service";
 import {Ingredient} from "../shared/ingredient.model";
@@ -7,7 +7,8 @@ import {Ingredient} from "../shared/ingredient.model";
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
-  providers: [RecipeService]
+  providers: [RecipeService],
+  encapsulation: ViewEncapsulation.None //none, native
 })
 export class RecipesComponent implements OnInit {
 
