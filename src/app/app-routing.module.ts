@@ -81,7 +81,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {useHash: true}) // in case where server do not return 404 page then I can tell server just to take care of things before hashsign(URL !) so case of 404 won't be handled by server on which app hosted and angular will manage it by self
   ],
   //exports says to angular that from this module,
   //if I want to add this module to the imports of another module,
