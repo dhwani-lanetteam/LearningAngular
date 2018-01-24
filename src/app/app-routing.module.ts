@@ -9,6 +9,7 @@ import {HomeComponent} from "./routing/home/home.component";
 import {Routes, RouterModule} from "@angular/router";
 import {AuthGuardService} from "./auth-guard.service";
 import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
+import {ErrorPageComponent} from "./routing/error-page/error-page.component";
 
 const appRoutes: Routes = [
   {
@@ -57,9 +58,17 @@ const appRoutes: Routes = [
   // more convenient way to catch route not covered by app
   // wildcard route
   // it should be last element as routes are configured top to bottom
+  // {
+  //   path: "**",
+  //   component: PageNotFoundComponent
+  // }
   {
-    path: "**",
-    component: PageNotFoundComponent
+    path: '**',
+    component: ErrorPageComponent,
+    //passinf static data to route
+    data: {
+      message: 'Page not found !! :('
+    }
   }
 
 ];

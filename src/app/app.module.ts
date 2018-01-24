@@ -39,6 +39,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {AuthGuardService} from "./auth-guard.service";
 import {AuthService} from "./auth.service";
 import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-service";
+import {ErrorPageComponent} from "./routing/error-page/error-page.component";
 
 
 // const appRoutes: Routes = [
@@ -128,7 +129,8 @@ import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-s
     UsersComponent,
     UserComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorPageComponent
   ],
   imports: [
     HttpModule,
