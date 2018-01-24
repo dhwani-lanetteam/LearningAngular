@@ -24,19 +24,20 @@ export class EditServerComponent implements OnInit, CanDeactivateGuard {
 
   ngOnInit() {
 
-    console.log("queryParams");
-    console.log(this.activatedRoute.snapshot.queryParams);
-
-    console.log("fragment");
-    console.log(this.activatedRoute.snapshot.fragment);
+    // console.log("queryParams");
+    // console.log(this.activatedRoute.snapshot);
+    //
+    // console.log("fragment");
+    // console.log(this.activatedRoute.snapshot.fragment);
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.allowEdit = params['allowEdit'] === '1' ? true : false;
     });
 
     // this.server = this.serversService.getServer(1);
-    // const id = this.activatedRoute.snapshot.params['id'];
-    this.server = this.serversService.getServer(1);
+    const id = this.activatedRoute.snapshot.params['id'];
+    console.log("id : " + id);
+    this.server = this.serversService.getServer(id);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
   }
