@@ -1,27 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "./user.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  user1Activated = false;
+  user2Activated = false;
 
-  displayRecipes: boolean = false;
+  constructor(private userService: UserService) {
+    console.log("user1Activated : " + this.user1Activated);
+    console.log("user2Activated : " + this.user2Activated);
+  }
 
-  // onTabClicked(event){
-  //
-  //   switch(event.clickedTab) {
-  //     case "shopping-list":
-  //       // console.log("cliked tab : shoppinglist");
-  //       this.displayRecipes = true;
-  //       break;
-  //     case "recipes":
-  //       // console.log("clicked tab : recipes");
-  //       this.displayRecipes = false;
-  //       break;
-  //     default:
-  //       console.log("default case");
-  //   }
-  // }
+  ngOnInit() {
+    this.userService.userActivated.subscribe(
+      (id: number) => {
+        console.log("the subject subscribed here : ");
+        if (id === 1) {
+          this.user1Activated = true;
+          console.log("user1Activated : " + this.user1Activated);
+        } else if (id === 2) {
+          console.log("user2Activated : " + this.user2Activated);
+          this.user2Activated = true;
+        }
+      }
+    );
+  }
 }
