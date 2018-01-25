@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     //-- this will run only when I subscribe to it
-    const myObservable = Observable.create((observer: Observer<string>) => {
+      const myObservable = Observable.create((observer: Observer<string>) => {
       console.log("in create");
       setTimeout(() => {
         observer.next("first package");

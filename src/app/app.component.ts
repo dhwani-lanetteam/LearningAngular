@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "./user.service";
+import {Observable, Observer} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -28,5 +29,13 @@ export class AppComponent implements OnInit{
         }
       }
     );
+
+    const source = Observable.from([1,2,3,4,5]);
+    const ex2 = source.map((val: number) => {
+      console.log("BC : "+val);
+      val = val + 10;
+      return val;
+    });
+    ex2.subscribe((val: number) => { console.log(val) });
   }
 }
