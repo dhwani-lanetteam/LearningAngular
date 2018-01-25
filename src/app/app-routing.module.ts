@@ -71,7 +71,7 @@ const appRoutes: Routes = [
   {
     path: '**',
     component: ErrorPageComponent,
-    //passinf static data to route
+    //passing static data to route
     data: {
       message: 'Page not found !! :('
     }

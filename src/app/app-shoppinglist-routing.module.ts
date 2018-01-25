@@ -7,6 +7,7 @@ import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {RecipeItemComponent} from "./recipes/recipe-list/recipe-item/recipe-item.component";
 import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 import {RecipeStartComponent} from "./recipes/recipe-start/recipe-start.component";
+import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
 
 const appRoutes: Routes = [
   {
@@ -22,12 +23,27 @@ const appRoutes: Routes = [
         path: "", //domain/recipes/
         component: RecipeStartComponent
       },
+      /*
+      * there was conflict
+      * http://localhost:4200/recipes/new
+      * http://localhost:4200/recipes/Test%20Recipe%203
+      * if :name path appears first then it will load RecipeDetailComponent
+      * so priority in defining routes matters
+      * */
+      {
+        path: "new",
+        component: RecipeEditComponent
+      },
+      {
+        path: ":name/edit",
+        component: RecipeEditComponent
+      },
       {
         path: ":name", //domain/recipes/recipename
         component: RecipeDetailComponent,
       }
     ]
-  },
+},
   {
     path: "shopping-list", //domain/shopping-list
     component: ShoppingListComponent

@@ -43,6 +43,7 @@ import {CanDeactivateGuard} from "./routing/servers/edit-server/can-deactivate-s
 import {ErrorPageComponent} from "./routing/error-page/error-page.component";
 import {ServerResolverService} from "./routing/servers/server/server-resolver.service";
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
     HomeComponent,
     PageNotFoundComponent,
     ErrorPageComponent,
-    RecipeStartComponent
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
     HttpModule,
