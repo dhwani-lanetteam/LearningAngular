@@ -24,7 +24,7 @@ import { GrayBgHighlightDirective } from './directivePractiseComponents/gray-bg-
 import { UnlessDirective } from './directivePractiseComponents/unless/unless.directive';
 import { DropdownDirective } from './shared/dropdown.directive';
 import {ShoppinglistService} from "./shopping-list/service/shoppinglist.service";
-import {CommonService} from "./shared/common.service";
+// import {CommonService} from "./shared/common.service";
 import { ServersComponent } from './routing/servers/servers.component';
 import { EditServerComponent } from './routing/servers/edit-server/edit-server.component';
 import {ServerComponent} from "./routing/servers/server/server.component";
@@ -89,7 +89,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
   ],
   providers: [
     ShoppinglistService,
-    CommonService,
+    // CommonService,
     ServersService,
     AuthGuardService,
     AuthService,
