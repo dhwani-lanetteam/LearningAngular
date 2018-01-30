@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Recipe} from "./recepe.model";
+// import {Recipe} from "./recepe.model";
 import {RecipeService} from "./service/recipe.service";
 import {Ingredient} from "../shared/ingredient.model";
 
@@ -12,15 +12,16 @@ import {Ingredient} from "../shared/ingredient.model";
 })
 export class RecipesComponent implements OnInit {
 
-  receivedRecipe: Recipe;
+  // receivedRecipe: Recipe;
 
-  constructor(private recipeService: RecipeService) { }
+  // constructor(private recipeService: RecipeService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.recipeService.recipeSelectedEmitter.subscribe((recipe: Recipe)=>{
-      // alert("name : " + recipe.name);
-      this.receivedRecipe = recipe;
-    });
+    // this.recipeService.recipeSelectedEmitter.subscribe((recipe: Recipe)=>{
+    //   // alert("name : " + recipe.name);
+    //   this.receivedRecipe = recipe;
+    // });
   }
 
   toShoppingListCLickSubscribe(ingredients: Ingredient[]){

@@ -1,5 +1,6 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {Ingredient} from "../../shared/ingredient.model";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class ShoppinglistService {
@@ -9,7 +10,8 @@ export class ShoppinglistService {
     new Ingredient("Butter",2)
   ];
 
-  ingredientsChangesEmtr: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
+  // ingredientsChangesEmtr: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
+  ingredientsChangesSbjct: Subject<Ingredient[]> = new Subject<Ingredient[]>();
   ingredientAddedEmtr: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
   ingredientEditedEmtr: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
@@ -28,7 +30,8 @@ export class ShoppinglistService {
     this.ingredientAddedEmtr.emit(new Ingredient((ingName).toLowerCase(), parseInt(ingAmount)));
     console.log("after push");
     console.log(this.ingredients);
-    this.ingredientsChangesEmtr.emit(this.ingredients.slice());
+    // this.ingredientsChangesEmtr.emit(this.ingredients.slice());
+    this.ingredientsChangesSbjct.next(this.ingredients.slice());
   }
 
   onEditClick(ingredient: Ingredient){
@@ -46,7 +49,8 @@ export class ShoppinglistService {
 
   addIngredients(ingredients: Ingredient[]){
     this.ingredients.push(...ingredients);
-    this.ingredientsChangesEmtr.emit(this.ingredients.slice());
+    // this.ingredientsChangesEmtr.emit(this.ingredients.slice());
+    this.ingredientsChangesSbjct.next(this.ingredients.slice());
   }
 }
 
