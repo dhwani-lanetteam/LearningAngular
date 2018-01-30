@@ -1,27 +1,110 @@
+<!-- Template Driven Approach to handle form -->
+<!-- valid tracked on individual element level and form level as well -->
+
+<!-- ***************** VALIDATION ***************** -->
+<!-- check element in console for ng-dirty ng-touched ng-valid ng-invalid>
+<!-- these are css class that are added by angular conditionally on form control -->
+<!-- they can be used to style the form control -->
+
+<!-- ***************** ACCESS ELEMENT METHODS ******************** -->
+<!-- 1 no binding - just say that this is form control -->
+<!-- 2 one way binding to give element the default value -->
+<!-- 3 two way binding to get or react on value -->
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form>
-        <div id="user-data">
+      <!--ngForm tells give me access to this form you created automatically-->
+      <!--only passing form won't help the way we need to access the form -->
+      <form (ngSubmit)="onSubmit(myform)" #myform="ngForm">
+        <!-- ngModelGroup needs to be set equal to string -->
+        <!-- check element in console. It has classes ng-dirty ng-touched ng-valid ng-invalid which can be used to validate and style -->
+        <div
+          id="user-data"
+          ngModelGroup="userData"
+          #userData="ngModelGroup"
+        >
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" class="form-control">
+            <!--required is built-in html directive-->
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              ngModel
+              name="txt_username"
+              required
+            >
           </div>
-          <button class="btn btn-default" type="button">Suggest an Username</button>
+          <button
+            (click)="suggestUserName()"
+            class="btn btn-default"
+            type="button">Suggest an Username</button>
           <div class="form-group">
             <label for="email">Mail</label>
-            <input type="email" id="email" class="form-control">
+            <!--email is angular directive which confirms valid email -->
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              ngModel
+              name="txt_email"
+              required
+              email
+              #email="ngModel"
+            >
+            <!-- local reference used -->
+            <span *ngIf="!email.valid && email.touched">This is not valid email id</span>
           </div>
         </div>
+        <!-- used local reference -->
+        <span *ngIf="!userData.valid && userData.touched">This group is invalid</span>
         <div class="form-group">
           <label for="secret">Secret Questions</label>
-          <select id="secret" class="form-control">
+          <!-- here is one way binding used -->
+          <!-- defaultSecretQuestion is initialised in .ts file -->
+          <select
+            id="secret"
+            class="form-control"
+            [ngModel]="defaultSecretQuestion"
+            name="dd_secret"
+          >
             <option value="pet">Your first Pet?</option>
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            name="txt_answer"
+            [(ngModel)]="answer"
+            rows="3"></textarea>
+        </div>
+        <p>Your Reply: {{ answer }}</p>
+        <div class="radio" *ngFor="let gender of genders" >
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              ngModel
+              required
+              [value]="gender"
+            > {{ gender }}
+          </label>
+        </div>
+        <!-- disable submit button if form is not valid -->
+        <button
+          class="btn btn-primary"
+          [disabled]="!myform.valid"
+          type="submit">Submit</button>
       </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="cold-xs-12">
+      <h3>Your Data</h3>
+      <p>Username : {{ user.username }} </p>
+      <p>EMail : {{ user.email }} </p>
     </div>
   </div>
 </div>
