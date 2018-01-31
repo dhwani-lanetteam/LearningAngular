@@ -1,84 +1,82 @@
-<!--SHOPPING LIST APP STARTS--->
-<app-header></app-header>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <!--<app-header-->
-        <!--(clickedTab)="onTabClicked($event)"-->
-      <!--&gt;</app-header>-->
-      <router-outlet></router-outlet>
-      <!--<app-recipes *ngIf="displayRecipes === false"></app-recipes>-->
-      <!--<app-shopping-list *ngIf="displayRecipes === true"></app-shopping-list>-->
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form
+        (submit)="onSubmitCall()"
+        [formGroup]="signupForm">
+        <div formGroupName="userData">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <!--this also works fine-->
+            <!--<input-->
+            <!--type="text"-->
+            <!--id="username"-->
+            <!--formControlName="username"-->
+            <!--class="form-control">-->
+            <!--this is property binding-->
+
+            <!-- for validation required will not work in reactive approach -->
+            <!-- here form is not configured in template, only synchronised with formControlName -->
+            <input
+              type="text"
+              id="username"
+              [formControlName]="'username'"
+              class="form-control">
+            <span
+              *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched"
+              class="help-block">
+              <SPAN
+                *ngIf="signupForm.get('userData.username'). errors['nameIsForbidden']"
+              >Invalid Username</SPAN>
+              <SPAN
+                *ngIf="signupForm.get('userData.username'). errors['required']"
+              >This is require</SPAN>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="form-control">
+            <span
+              *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched"
+              class="help-block">Please Enter valid email</span>
+          </div>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio"
+              formControlName="gender"
+              [value]="gender">{{ gender }}
+          </label>
+        </div>
+        <div
+          formArrayName="hobbies"
+        >
+          <h4>Hobbies</h4>
+          <button
+            class="btn btn-default "
+            type="button"
+            (click)="onAddHobby()"
+          >Add Hobby</button>
+          <div
+            *ngFor="let control of signupForm.get('hobbies').controls ; let i = index"
+          >
+            <input
+              type="text"
+              class="form-control"
+              [formControlName]="i"
+            >
+          </div>
+        </div>
+        <span
+          *ngIf="!signupForm.valid && signupForm.touched"
+          class="help-block">Please Enter valid Data</span>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>
-<!--SHOPPING LIST APP ENDS here-->
-
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!--<div class="col-md-12">-->
-      <!--<app-server></app-server>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--app-only-odd starts-->
-<!--<app-only-odd></app-only-odd>-->
-<!--app-only-odd ends-->
-
-<!--app-ng-switch starts-->
-<!--<app-ng-switch></app-ng-switch>-->
-<!--app-ng-switch ends-->
-
-<!--app-more-on-renderer starts-->
-<!--<app-more-on-renderer></app-more-on-renderer>-->
-<!--app-more-on-renderer ends-->
-
-<!--ROUTING STARTS HERE-->
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
-      <!--<ul class="nav nav-tabs">-->
-        <!--<li-->
-          <!--role="presentation"-->
-          <!--[routerLinkActiveOptions] = "{exact: true}"-->
-          <!--routerLinkActive="active"-->
-          <!--class="active">-->
-          <!--<a routerLink="/">Home</a>-->
-        <!--</li>-->
-        <!--<li-->
-          <!--role="presentation"-->
-          <!--routerLinkActive="active" >-->
-          <!--<a routerLink="/servers">Servers</a>-->
-        <!--</li>-->
-        <!--<li-->
-          <!--role="presentation"-->
-          <!--routerLinkActive="active" >-->
-          <!--<a [routerLink]="['/users']">Users</a>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-    <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
-      <!--<router-outlet></router-outlet>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-  <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
-  <!--<app-home></app-home>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-  <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
-  <!--<app-users></app-users>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-  <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
-  <!--<app-servers></app-servers>-->
-  <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--ROUTING ENDS HERE-->
