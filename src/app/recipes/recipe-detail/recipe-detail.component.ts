@@ -11,9 +11,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 })
 export class RecipeDetailComponent implements OnInit {
 
-  //  @Input() recipeToDisplay: Recipe;
   recipeToDisplay: Recipe;
-  // @Output() toShoppingListCLickEmtr: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
 
   constructor(private recipeService : RecipeService,
               private activatedRoute: ActivatedRoute,
@@ -26,13 +24,10 @@ export class RecipeDetailComponent implements OnInit {
     // const recipeName = this.activatedRoute.snapshot.params['name'];
     // this.recipeToDisplay = this.recipeService.getRecipe(recipeName);
     this.activatedRoute.params.subscribe((params: Params) => {
+      console.log("params['name'] : ",params['name']);
       this.recipeToDisplay = this.recipeService.getRecipe(params['name']);
     });
   }
-
-  // closeDropDown(){
-  //
-  // }
 
   onEditClick(){
     console.log("onEditClick() of RecipeDetailComponent");
@@ -50,6 +45,10 @@ export class RecipeDetailComponent implements OnInit {
     console.log(this.recipeToDisplay);
     // this.toShoppingListCLickEmtr.emit(this.recipeToDisplay.ingredients);
     this.recipeService.addIngredientToShoppingList(this.recipeToDisplay.ingredients);
+  }
+
+  onDeleteClick(){
+    this.recipeService.deleteRecipe(this.recipeToDisplay);
   }
 
 }

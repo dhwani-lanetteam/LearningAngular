@@ -50,19 +50,17 @@ export class RecipeService {
   }
 
   addIngredientToShoppingList(ingredients: Ingredient[]){
+    console.log("addIngredientToShoppingList : ");
+    console.log(ingredients);
     this.shoppingListServide.addIngredients(ingredients);
   }
 
   getRecipe(name: string){
-    console.log("getRecipe called from recipe service");
     const recipe = this.recipes.find(
       (r) => {
-        // console.log("s : ");
-        // console.log(s);
         return r.name === name; //=== compares data type along with content. 3 not equals to "3"
       }
     );
-    // console.log(server);
     return recipe;
   }
 
@@ -70,5 +68,27 @@ export class RecipeService {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.recipes.slice());
   }
+
+  updateRecipe(name: string, newRecipe: Recipe){
+    //-- silly logic actually
+    const recipe = this.recipes.find(
+      (r) => {
+        return r.name === name; //=== compares data type along with content. 3 not equals to "3"
+      }
+    );
+    // console.log("before update : ",this.recipes);
+    const indexToUpdate = this.recipes.indexOf(recipe);
+    console.log("indexToUpdate : ",indexToUpdate);
+    // this.recipes[indexToUpdate] = newRecipe;
+    // console.log("after update : ",this.recipes);
+    // this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(recipe: Recipe){
+    const index = this.recipes.indexOf(recipe);
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
 
 }

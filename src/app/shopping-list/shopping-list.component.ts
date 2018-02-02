@@ -13,7 +13,7 @@ import {Subscription} from "rxjs/Subscription";
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ingredients: Ingredient[];
-  private subscription: Subscription = new Subscription();
+  // private subscription: Subscription = new Subscription();
   private ingredientsChangesSubscription = new Subscription();
 
   constructor(private shoppinglistService: ShoppinglistService) { }
@@ -30,7 +30,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     //--- as I have created my own subject I need to unsubscribe it as angular won't manage it.
     //--- to prevent any memory leak unsubscribe it in ngOnDestroy
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    this.ingredientsChangesSubscription.unsubscribe();
   }
 
   onEditItem(ingredient: Ingredient, index: number){
