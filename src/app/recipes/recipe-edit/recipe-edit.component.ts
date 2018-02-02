@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {FormGroup, FormArray, Validators, FormControl} from "@angular/forms";
+import {FormGroup, FormArray, Validators, FormControl, Validator} from "@angular/forms";
 import {RecipeService} from "../service/recipe.service";
 
 @Component({
@@ -27,21 +27,23 @@ export class RecipeEditComponent implements OnInit {
       this.recipeName = params['name'];
       this.editMode = params['name'] != null;
       console.log("editmode : " + this.editMode);
+      this.initForm();
     });
   }
 
   onSubmit() {
+    console.log(this.recipeForm);
     // const newRecipe = new Recipe(
     //   this.recipeForm.value['name'],
     //   this.recipeForm.value['description'],
     //   this.recipeForm.value['imagePath'],
     //   this.recipeForm.value['ingredients']);
-    if (this.editMode) {
-      // this.recipeService.updateRecipe(this.id, this.recipeForm.value);
-    } else {
-      this.recipeService.addRecipe(this.recipeForm.value);
-    }
-    this.onCancel();
+    // if (this.editMode) {
+    //   // this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+    // } else {
+    //   this.recipeService.addRecipe(this.recipeForm.value);
+    // }
+    // this.onCancel();
   }
 
   onAddIngredient() {
@@ -64,38 +66,23 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute});
   }
 
-  // private initForm() {
-  //   let recipeName = '';
-  //   let recipeImagePath = '';
-  //   let recipeDescription = '';
-  //   let recipeIngredients = new FormArray([]);
-  //
-  //   if (this.editMode) {
-  //     const recipe = this.recipeService.getRecipe(this.id);
-  //     recipeName = recipe.name;
-  //     recipeImagePath = recipe.imagePath;
-  //     recipeDescription = recipe.description;
-  //     if (recipe['ingredients']) {
-  //       for (let ingredient of recipe.ingredients) {
-  //         recipeIngredients.push(
-  //           new FormGroup({
-  //             'name': new FormControl(ingredient.name, Validators.required),
-  //             'amount': new FormControl(ingredient.amount, [
-  //               Validators.required,
-  //               Validators.pattern(/^[1-9]+[0-9]*$/)
-  //             ])
-  //           })
-  //         );
-  //       }
-  //     }
-  //   }
-  //
-  //   this.recipeForm = new FormGroup({
-  //     'name': new FormControl(recipeName, Validators.required),
-  //     'imagePath': new FormControl(recipeImagePath, Validators.required),
-  //     'description': new FormControl(recipeDescription, Validators.required),
-  //     'ingredients': recipeIngredients
-  //   });
-  // }
+  private initForm() {
+
+    let recipeName = '';
+    let recipeImagePath = '';
+    let recipeDescription = '';
+
+    if (this.editMode){
+      recipeName = this.recipeService.getRecipe(this.recipeName).name;
+      recipeDescription = this.recipeService.getRecipe(this.recipeName).description;
+      recipeImagePath = this.recipeService.getRecipe(this.recipeName).imagePath;
+    }
+
+    this.recipeForm = new FormGroup({
+      'name': new FormControl(recipeName),
+      'imagePath' : new FormControl(recipeImagePath),
+      'description': new FormControl(recipeDescription)
+    });
+  }
 
 }
