@@ -18,26 +18,20 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   startedEditingSubscription: Subscription = new Subscription();
   editMode: boolean = false;
   editedItemIndex: number;
-  eidtedIngredient: Ingredient;
+  editedIngredient: Ingredient;
   @ViewChild('f') shoppingListForm: NgForm;
 
   constructor(private shoppinglistService: ShoppinglistService) { }
 
   ngOnInit() {
-    // this.shoppinglistService.ingredientEditedEmtr.subscribe((ingredient: Ingredient)=> {
-    //   console.log("This should be edited");
-    //   console.log("name : " + ingredient.name);
-    //   console.log("amount : " + ingredient.amount);
-    // });
-
     this.startedEditingSubscription = this.shoppinglistService.startedEditing.subscribe((index: number) => {
       console.log("index subscription : " + index);
       this.editMode = true;
       this.editedItemIndex = index;
-      this.eidtedIngredient = this.shoppinglistService.getIngredient(index);
+      this.editedIngredient = this.shoppinglistService.getIngredient(index);
       this.shoppingListForm.setValue({
-        name: this.eidtedIngredient.name,
-        amount: this.eidtedIngredient.amount
+        name: this.editedIngredient.name,
+        amount: this.editedIngredient.amount
       });
     });
   }
@@ -48,7 +42,23 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   onAddItem(form: NgForm) {
     const value = form.value;
-    this.shoppinglistService.onAddClick(value.name, value.amount);
+    if (this.editMode){
+      this.shoppinglistService.updateIngredient(this.editedItemIndex, new Ingredient(value.name, value.amount));
+    } else {
+      this.shoppinglistService.onAddClick(value.name, value.amount);
+    }
+    this.editMode = false;
+    form.reset();
   }
 
+  onClearClick(){
+    this.editMode = false;
+    this.shoppingListForm.reset();
+  }
+
+  onDeleteClick() {
+    console.log("editedItemIndex ", this.editedItemIndex);
+    this.shoppinglistService.deleteIngredient(this.editedItemIndex);
+    this.onClearClick()
+  }
 }

@@ -34,15 +34,16 @@
             class="btn btn-success"
             type="submit"
             [disabled]="!f.valid"
-          >Add</button>
+          >{{ editMode? 'Update' : 'Add' }}</button>
           <button
             class="btn btn-danger"
-            type="submit"
+            type="button"
             (click)="onDeleteClick()"
+            [disabled]="!editMode"
           >Delete</button>
           <button
             class="btn btn-primary"
-            type="submit"
+            type="button"
             (click)="onClearClick()"
           >Clear</button>
         </div>

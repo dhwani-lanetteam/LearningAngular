@@ -24,7 +24,6 @@ export class ShoppinglistService {
   }
 
   getIngredient(index: number){
-    debugger
     console.log("index : ", index);
     console.log(this.ingredients[index]);
     return this.ingredients[index];
@@ -32,33 +31,24 @@ export class ShoppinglistService {
 
 
   onAddClick(ingName: string, ingAmount: string){
-    console.log("shoppinglist service onAddClick");
-    console.log("name : "+ingName);
-    console.log("ingAmount : "+ingAmount);
     this.ingredients.push(new Ingredient((ingName).toLowerCase(), parseInt(ingAmount)));
-    // this.ingredientAddedEmtr.emit(new Ingredient((ingName).toLowerCase(), parseInt(ingAmount)));
-    console.log("after push");
-    console.log(this.ingredients);
-    // this.ingredientsChangesEmtr.emit(this.ingredients.slice());
     this.ingredientsChangesSbjct.next(this.ingredients.slice());
-  }
-
-  // onEditClick(ingredient: Ingredient){
-  //   console.log("onEditClick shoppinglist service");
-  //   console.log("edit this : ");
-  //   console.log(ingredient.name);
-  //   console.log(ingredient.amount);
-  //   // this.ingredientEditedEmtr.emit(ingredient);
-  //
-  // }
-
-  onDeleteClick(){
-    console.log("onDeleteClick");
   }
 
   addIngredients(ingredients: Ingredient[]){
     this.ingredients.push(...ingredients);
-    // this.ingredientsChangesEmtr.emit(this.ingredients.slice());
+    this.ingredientsChangesSbjct.next(this.ingredients.slice());
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient){
+    this.ingredients[index] = newIngredient;
+    this.ingredientsChangesSbjct.next(this.ingredients.slice());
+  }
+
+  deleteIngredient(index: number){
+    console.log("delete this : ", index);
+    console.log(this.ingredients[index]);
+    this.ingredients.splice(index, 1);
     this.ingredientsChangesSbjct.next(this.ingredients.slice());
   }
 }
