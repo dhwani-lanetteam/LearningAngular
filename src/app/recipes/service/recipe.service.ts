@@ -3,11 +3,13 @@ import {Recipe} from "../recepe.model";
 import {Ingredient} from "../../shared/ingredient.model";
 import {ShoppinglistService} from "../../shopping-list/service/shoppinglist.service";
 import {ActivatedRoute} from "@angular/router";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class RecipeService {
 
   // recipeSelectedEmitter = new EventEmitter<Recipe>();
+  recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
     new Recipe(
@@ -62,6 +64,11 @@ export class RecipeService {
     );
     // console.log(server);
     return recipe;
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
   }
 
 }

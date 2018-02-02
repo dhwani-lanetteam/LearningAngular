@@ -10,15 +10,24 @@ export class ShoppinglistService {
     new Ingredient("Butter",2)
   ];
 
-  // ingredientsChangesEmtr: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
   ingredientsChangesSbjct: Subject<Ingredient[]> = new Subject<Ingredient[]>();
-  ingredientAddedEmtr: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
-  ingredientEditedEmtr: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
+  startedEditing: Subject<number> = new Subject<number>();
+
+  // ingredientsChangesEmtr: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
+  // ingredientAddedEmtr: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
+  // ingredientEditedEmtr: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
   constructor() { }
 
   getIngredients(){
     return this.ingredients.slice();
+  }
+
+  getIngredient(index: number){
+    debugger
+    console.log("index : ", index);
+    console.log(this.ingredients[index]);
+    return this.ingredients[index];
   }
 
 
@@ -27,21 +36,21 @@ export class ShoppinglistService {
     console.log("name : "+ingName);
     console.log("ingAmount : "+ingAmount);
     this.ingredients.push(new Ingredient((ingName).toLowerCase(), parseInt(ingAmount)));
-    this.ingredientAddedEmtr.emit(new Ingredient((ingName).toLowerCase(), parseInt(ingAmount)));
+    // this.ingredientAddedEmtr.emit(new Ingredient((ingName).toLowerCase(), parseInt(ingAmount)));
     console.log("after push");
     console.log(this.ingredients);
     // this.ingredientsChangesEmtr.emit(this.ingredients.slice());
     this.ingredientsChangesSbjct.next(this.ingredients.slice());
   }
 
-  onEditClick(ingredient: Ingredient){
-    console.log("onEditClick shoppinglist service");
-    console.log("edit this : ");
-    console.log(ingredient.name);
-    console.log(ingredient.amount);
-    this.ingredientEditedEmtr.emit(ingredient);
-
-  }
+  // onEditClick(ingredient: Ingredient){
+  //   console.log("onEditClick shoppinglist service");
+  //   console.log("edit this : ");
+  //   console.log(ingredient.name);
+  //   console.log(ingredient.amount);
+  //   // this.ingredientEditedEmtr.emit(ingredient);
+  //
+  // }
 
   onDeleteClick(){
     console.log("onDeleteClick");

@@ -3,7 +3,6 @@ import { Ingredient } from '../shared/ingredient.model';
 import {HelpeerServiceService} from "../shared/helpeer-service.service";
 import {ShoppinglistService} from "./service/shoppinglist.service";
 import {Subscription} from "rxjs/Subscription";
-// import { Helper } from '../shared/Helper';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,22 +14,17 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ingredients: Ingredient[];
   private subscription: Subscription = new Subscription();
+  private ingredientsChangesSubscription = new Subscription();
 
   constructor(private shoppinglistService: ShoppinglistService) { }
 
   ngOnInit() {
 
     this.ingredients = this.shoppinglistService.getIngredients();
-    this.shoppinglistService.ingredientAddedEmtr.subscribe((ing: Ingredient) => {
-      console.log("this ing is added : " + ing);
-      // this.shoppinglistService.ingredientsChangesEmtr.subscribe((ings: Ingredient[]) => {
-      //   this.ingredients = ings;
-      // });
-      this.subscription = this.shoppinglistService.ingredientsChangesSbjct.subscribe((ings: Ingredient[]) => {
-        this.ingredients = ings;
-      });
+    this.ingredientsChangesSubscription = this.shoppinglistService.ingredientsChangesSbjct.subscribe((ings: [Ingredient]) => {
+      console.log("this ing is added : " + ings);
+      this.ingredients = ings;
     });
-
   }
 
   ngOnDestroy(){
@@ -39,16 +33,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // onIngredientEmission(ingredient: Ingredient){
-  //   // ingredient.name = this.helper.ucfirst(ingredient.name);
-  //   ingredient.name = this.helperService.ucfirst(ingredient.name);
-  //   this.ingredients.push(ingredient);
-  // }
-
-  onEditClick(ingredient: Ingredient){
+  onEditItem(ingredient: Ingredient, index: number){
     console.log("shopping-list component" );
     console.log(ingredient);
-    this.shoppinglistService.onEditClick(ingredient);
+    this.shoppinglistService.startedEditing.next(index);
   }
 
 }

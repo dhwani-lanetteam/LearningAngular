@@ -1,7 +1,7 @@
 // import {Routes, RouterModule} from "@angular/router";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
@@ -83,6 +83,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     HttpClientModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     // RouterModule.forRoot(appRoutes)
     // AppRoutingModule
     AppShoppinglistRouting
