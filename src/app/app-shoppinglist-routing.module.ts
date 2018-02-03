@@ -35,11 +35,11 @@ const appRoutes: Routes = [
         component: RecipeEditComponent
       },
       {
-        path: ":name/edit",
+        path: ":id/edit",
         component: RecipeEditComponent
       },
       {
-        path: ":name", //domain/recipes/recipename
+        path: ":id", //domain/recipes/recipename
         component: RecipeDetailComponent,
       }
     ]

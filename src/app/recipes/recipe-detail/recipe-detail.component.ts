@@ -12,6 +12,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 export class RecipeDetailComponent implements OnInit {
 
   recipeToDisplay: Recipe;
+  recipeToDisplayId: string;
 
   constructor(private recipeService : RecipeService,
               private activatedRoute: ActivatedRoute,
@@ -20,12 +21,13 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit() {
     console.log("ngOnInit RecipeDetailComponent");
-    console.log("here :::: " + this.activatedRoute.snapshot.params['name']);
+    console.log("here :::: " + this.activatedRoute.snapshot.params['id']);
     // const recipeName = this.activatedRoute.snapshot.params['name'];
     // this.recipeToDisplay = this.recipeService.getRecipe(recipeName);
     this.activatedRoute.params.subscribe((params: Params) => {
-      console.log("params['name'] : ",params['name']);
-      this.recipeToDisplay = this.recipeService.getRecipe(params['name']);
+      console.log("params['id'] : ",params['id']);
+      this.recipeToDisplay = this.recipeService.getRecipe(params['id']);
+      this.recipeToDisplayId = params['id'];
     });
   }
 
@@ -34,9 +36,9 @@ export class RecipeDetailComponent implements OnInit {
     // this.roueter.navigate(['/recipes'],this.recipeToDisplay.name+'/edit');
     // this.roueter.navigate(['edit'], {relativeTo: this.activatedRoute});
     //go up one level that is http://localhost:4200/recipes/
-    //append name of recipe and edit path
+    //append id of recipe and edit path
     //specify it is relative to current path
-    this.roueter.navigate(['../',this.recipeToDisplay.name,'edit'],{relativeTo: this.activatedRoute});
+    this.roueter.navigate(['../',this.recipeToDisplayId,'edit'],{relativeTo: this.activatedRoute});
   }
 
   onToShoppingListClick(){

@@ -11,6 +11,7 @@ import {ActivatedRouteSnapshot, ActivatedRoute, Router} from "@angular/router";
 export class RecipeItemComponent implements OnInit {
 
   @Input('recipe') recipe: Recipe;
+  @Input('id') id: number;
   // @Output() recipeClickedEmitter = new EventEmitter<Recipe>();
 
   constructor(private recipeService: RecipeService,

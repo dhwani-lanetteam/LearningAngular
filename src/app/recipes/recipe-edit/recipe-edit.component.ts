@@ -10,9 +10,10 @@ import {RecipeService} from "../service/recipe.service";
 })
 export class RecipeEditComponent implements OnInit {
 
-  recipeName: string;
+  // recipeName: string;
   editMode: boolean = false;
   recipeForm: FormGroup;
+  recipeId: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private recipeService: RecipeService,
@@ -24,8 +25,8 @@ export class RecipeEditComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       console.log("params : ");
       console.log(params);
-      this.recipeName = params['name'];
-      this.editMode = params['name'] != null;
+      this.recipeId = params['id'];
+      this.editMode = params['id'] != null;
       console.log("editmode : " + this.editMode);
       this.initForm();
     });
@@ -40,11 +41,11 @@ export class RecipeEditComponent implements OnInit {
     //   this.recipeForm.value['ingredients']
     // );
 
-    console.log("this.recipeName : ", this.recipeName);
+    console.log("this.recipeName : ", this.recipeId);
     console.log("this.recipeForm.value : ", this.recipeForm.value);
 
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.recipeName, this.recipeForm.value);
+      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value);
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
@@ -75,12 +76,12 @@ export class RecipeEditComponent implements OnInit {
     let recipeIngredients = new FormArray([]);
 
     if (this.editMode){
-      recipeName = this.recipeService.getRecipe(this.recipeName).name;
-      recipeDescription = this.recipeService.getRecipe(this.recipeName).description;
-      recipeImagePath = this.recipeService.getRecipe(this.recipeName).imagePath;
+      recipeName = this.recipeService.getRecipe(this.recipeId).name;
+      recipeDescription = this.recipeService.getRecipe(this.recipeId).description;
+      recipeImagePath = this.recipeService.getRecipe(this.recipeId).imagePath;
 
-      if (this.recipeService.getRecipe(this.recipeName).ingredients){
-        for (let ing of (this.recipeService.getRecipe(this.recipeName).ingredients)){
+      if (this.recipeService.getRecipe(this.recipeId).ingredients){
+        for (let ing of (this.recipeService.getRecipe(this.recipeId).ingredients)){
           console.log("ing : ", ing);
           recipeIngredients.push(new FormGroup({
             'name': new FormControl(ing.name, [Validators.required]),
@@ -88,7 +89,7 @@ export class RecipeEditComponent implements OnInit {
           }));
         }
       }
-    }
+    }//
 
     this.recipeForm = new FormGroup({
       'name': new FormControl(recipeName, [Validators.required]),

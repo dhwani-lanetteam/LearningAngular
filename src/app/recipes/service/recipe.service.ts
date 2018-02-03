@@ -55,12 +55,10 @@ export class RecipeService {
     this.shoppingListServide.addIngredients(ingredients);
   }
 
-  getRecipe(name: string){
-    const recipe = this.recipes.find(
-      (r) => {
-        return r.name === name; //=== compares data type along with content. 3 not equals to "3"
-      }
-    );
+  getRecipe(id: string){
+    console.log("getRecipe : ");
+    const recipe = this.recipes[parseInt(id)];
+    console.log(recipe);
     return recipe;
   }
 
@@ -69,16 +67,20 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  updateRecipe(name: string, newRecipe: Recipe){
+  updateRecipe(id: string, newRecipe: Recipe){
+
+    this.recipes[parseInt(id)] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
+
     //-- silly logic actually
-    const recipe = this.recipes.find(
-      (r) => {
-        return r.name === name; //=== compares data type along with content. 3 not equals to "3"
-      }
-    );
+    // const recipe = this.recipes.find(
+    //   (r) => {
+    //     return r.name === name; //=== compares data type along with content. 3 not equals to "3"
+    //   }
+    // );
     // console.log("before update : ",this.recipes);
-    const indexToUpdate = this.recipes.indexOf(recipe);
-    console.log("indexToUpdate : ",indexToUpdate);
+    // const indexToUpdate = this.recipes.indexOf(recipe);
+    // console.log("indexToUpdate : ",indexToUpdate);
     // this.recipes[indexToUpdate] = newRecipe;
     // console.log("after update : ",this.recipes);
     // this.recipesChanged.next(this.recipes.slice());
