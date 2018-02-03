@@ -7,21 +7,55 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  displayRecipes: boolean = false;
+  appStatus = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
+  });
 
-  // onTabClicked(event){
-  //
-  //   switch(event.clickedTab) {
-  //     case "shopping-list":
-  //       // console.log("cliked tab : shoppinglist");
-  //       this.displayRecipes = true;
-  //       break;
-  //     case "recipes":
-  //       // console.log("clicked tab : recipes");
-  //       this.displayRecipes = false;
-  //       break;
-  //     default:
-  //       console.log("default case");
-  //   }
-  // }
+  servers = [
+    {
+      instanceType: 'medium',
+      name: 'Production',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'large',
+      name: 'User Database',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Development Server',
+      status: 'offline',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    }
+  ];
+
+  filteredStatus: string = "";
+
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+    return {
+      'list-group-item-success': server.status === 'stable',
+      'list-group-item-warning': server.status === 'offline',
+      'list-group-item-danger': server.status === 'critical'
+    };
+  }
+
+  onAddServer(){
+    this.servers.push({
+      instanceType: 'generic',
+      name: 'Development',
+      status: 'unstable',
+      started: new Date()
+    });
+  }
 }
