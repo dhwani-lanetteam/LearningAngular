@@ -13,30 +13,21 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      "Test Recipe 1",
-      "This is some description",
-      "assets/img/veg-spring-rolls-recipe.jpg",
+      "Idli Sambhar",
+      "south indian dish",
+      "assets/img/idlisambahr.jpg",
       [
         new Ingredient("r1 i1",5),
         new Ingredient("r1 i2",6)
       ]
     ),
     new Recipe(
-      "Test Recipe 2",
-      "This is description 2",
-      "assets/img/veg-spring-rolls-recipe.jpg",
+      "Vada Pau",
+      "just for snack",
+      "assets/img/vadapau.jpg",
       [
         new Ingredient("r2 i1",4),
         new Ingredient("r2 i2",3)
-      ]
-    ),
-    new Recipe(
-      "Test Recipe 3",
-      "This is description 3",
-      "assets/img/veg-spring-rolls-recipe.jpg",
-      [
-        new Ingredient("r3 i1",1),
-        new Ingredient("r3 i2",2)
       ]
     )
   ];
@@ -68,22 +59,8 @@ export class RecipeService {
   }
 
   updateRecipe(id: string, newRecipe: Recipe){
-
     this.recipes[parseInt(id)] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
-
-    //-- silly logic actually
-    // const recipe = this.recipes.find(
-    //   (r) => {
-    //     return r.name === name; //=== compares data type along with content. 3 not equals to "3"
-    //   }
-    // );
-    // console.log("before update : ",this.recipes);
-    // const indexToUpdate = this.recipes.indexOf(recipe);
-    // console.log("indexToUpdate : ",indexToUpdate);
-    // this.recipes[indexToUpdate] = newRecipe;
-    // console.log("after update : ",this.recipes);
-    // this.recipesChanged.next(this.recipes.slice());
   }
 
   deleteRecipe(recipe: Recipe){

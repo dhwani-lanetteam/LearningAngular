@@ -44,6 +44,7 @@ import {ErrorPageComponent} from "./routing/error-page/error-page.component";
 import {ServerResolverService} from "./routing/servers/server/server-resolver.service";
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import {RecipeService} from "./recipes/service/recipe.service";
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     AuthGuardService,
     AuthService,
     CanDeactivateGuard,
-    ServerResolverService
+    ServerResolverService,
+    RecipeService
   ],
   bootstrap: [AppComponent]
 })
