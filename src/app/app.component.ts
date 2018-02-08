@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import {ServersService} from "./servers.service";
-import {HttpResponse} from "@angular/common/http";
+// import {HttpResponse} from "@angular/common/http";
 
-interface ServerResponse {
-  name: string,
-  capacity: number,
-  id: number
-}
+
 
 @Component({
   selector: 'app-root',
@@ -14,6 +10,9 @@ interface ServerResponse {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  appName: string;
+
   servers = [
     {
       name: 'Testserver',
@@ -28,12 +27,19 @@ export class AppComponent {
   ];
 
   constructor(private serverService: ServersService){
-
+    this.serverService.getAppName().then(
+      (response) => {
+        this.appName = response;
+      },
+      (error) => {
+        console.log("error : ",error);
+      }
+    )
   }
 
   onSaveServer(){
-    //no need to unsubscribe as angular will manage
-    this.serverService.stroreServer(this.servers).subscribe(
+    //no need to un subscribe as angular will manage
+    this.serverService.storeServer(this.servers).subscribe(
       (response) => {
         console.log("response : ");
         console.log(response);
@@ -53,13 +59,14 @@ export class AppComponent {
   }
 
   onGetServers(){
-    this.serverService.getServers().subscribe(
-      (response: HttpResponse<ServerResponse>) => {
-        console.log("ServerResponse : ");
+    // let data = this.serverService.getServers();
+    this.serverService.getServers().then(
+      (response) => {
+        console.log("onGetServers : response : ");
         console.log(response);
-      },
-      (error) => console.log(error)
+      }
     );
+
   }
 
   private generateId() {
