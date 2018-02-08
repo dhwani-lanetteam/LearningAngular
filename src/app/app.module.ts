@@ -45,6 +45,7 @@ import {ServerResolverService} from "./routing/servers/server/server-resolver.se
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeService} from "./recipes/service/recipe.service";
+import {DataService} from "./shared/data.service";
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import {RecipeService} from "./recipes/service/recipe.service";
     AuthService,
     CanDeactivateGuard,
     ServerResolverService,
-    RecipeService
+    RecipeService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

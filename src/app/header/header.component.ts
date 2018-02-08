@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RecipeService} from "../recipes/service/recipe.service";
+import {DataService} from "../shared/data.service";
 
 @Component({
   selector: 'app-header',
@@ -7,19 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  // @Output() clickedTab = new EventEmitter<{clickedTab: string}>();
-
-  constructor() { }
+  constructor(private recipeService: RecipeService, private dataService: DataService) {
+  }
 
   ngOnInit() {
   }
 
-  // onShoppingListClick(clickedElement: string = ""){
-  //   this.clickedTab.emit({clickedTab: clickedElement});
-  // }
-  //
-  // onRecipeClick(clickedElement: string = ""){
-  //   this.clickedTab.emit({clickedTab: clickedElement});
-  // }
+  onSaveData(){
+    console.log("onSaveData : ");
+    this.dataService.storeRecipes().then(
+      (response) => {
+        console.log("response 123 : ", response);
+      },
+      (error) => {
+        console.log("error : ",error);
+      }
+    );
+  }
+
+  onFetchData(){
+    console.log("onFetchData : ");
+    this.dataService.getRecipes().then(
+      (response) => {
+        console.log("response : ", response);
+        this.recipeService.setRecipes(response);
+      },
+      (error) => {
+        console.log("error : ", error);
+      }
+    )
+  }
 
 }
