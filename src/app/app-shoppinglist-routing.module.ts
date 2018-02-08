@@ -8,6 +8,7 @@ import {RecipeItemComponent} from "./recipes/recipe-list/recipe-item/recipe-item
 import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 import {RecipeStartComponent} from "./recipes/recipe-start/recipe-start.component";
 import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
+import {SignupComponent} from "./authentication/signup/signup.component";
 
 const appRoutes: Routes = [
   {
@@ -47,6 +48,10 @@ const appRoutes: Routes = [
   {
     path: "shopping-list", //domain/shopping-list
     component: ShoppingListComponent
+  },
+  {
+    path: "signup",
+    component: SignupComponent
   },
   {
     path: "not-found",
