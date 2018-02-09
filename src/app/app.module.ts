@@ -1,3 +1,5 @@
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,22 +16,9 @@ import { GoWildDirective } from './directivePractiseComponents/more-on-renderer/
 import { GrayBgHighlightDirective } from './directivePractiseComponents/gray-bg-highlight/gray-bg-highlight.directive';
 import { UnlessDirective } from './directivePractiseComponents/unless/unless.directive';
 import { ShoppinglistService } from "./shopping-list/service/shoppinglist.service";
-import { ServersComponent } from './routing/servers/servers.component';
-import { EditServerComponent } from './routing/servers/edit-server/edit-server.component';
-import { ServerComponent } from "./routing/servers/server/server.component";
-import { UsersComponent } from './routing/users/users.component';
-import { UserComponent } from './routing/users/user/user.component';
-import { HomeComponent } from './routing/home/home.component';
-import { HttpModule } from "@angular/http";
-import { HttpClientModule } from "@angular/common/http";
-import { ServersService } from "./routing/servers/servers.service";
-import { PageNotFoundComponent } from './routing/page-not-found/page-not-found.component';
 import { AppShoppinglistRouting } from "./app-shoppinglist-routing.module";
 import { AuthGuardService } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
-import { CanDeactivateGuard } from "./routing/servers/edit-server/can-deactivate-service";
-import { ErrorPageComponent } from "./routing/error-page/error-page.component";
-import { ServerResolverService } from "./routing/servers/server/server-resolver.service";
 import { RecipeService } from "./recipes/service/recipe.service";
 import { DataService } from "./shared/data.service";
 import { SignupComponent } from './authentication/signup/signup.component';
@@ -37,14 +26,12 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { RecipesModule } from "./recipes/recipes.module";
 import { SharedModule } from "./shared/shared.module";
 import { ShoppingListModule } from "./shopping-list/shopping-list.module";
+import { RoutindDemoModule } from "./routingDemo/routind-demo.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    // ShoppingListComponent,
-    // ShoppingEditComponent,
-    ServerComponent,
     CockpitComponent,
     OnlyOddComponent,
     NgSwitchDemoComponent,
@@ -55,13 +42,6 @@ import { ShoppingListModule } from "./shopping-list/shopping-list.module";
     GoWildDirective,
     GrayBgHighlightDirective,
     UnlessDirective,
-    ServersComponent,
-    EditServerComponent,
-    UsersComponent,
-    UserComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-    ErrorPageComponent,
     SignupComponent,
     SigninComponent
   ],
@@ -80,15 +60,13 @@ import { ShoppingListModule } from "./shopping-list/shopping-list.module";
     AppShoppinglistRouting, //RouterModule.forRoot(appRoutes)
     RecipesModule, //RouterModule.forChild(recipesRoutes)
     ShoppingListModule,
-    SharedModule
+    SharedModule,
+    RoutindDemoModule
   ],
   providers: [
     ShoppinglistService,
-    ServersService,
     AuthGuardService,
     AuthService,
-    CanDeactivateGuard,
-    ServerResolverService,
     RecipeService,
     DataService
   ],
