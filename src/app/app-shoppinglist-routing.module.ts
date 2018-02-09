@@ -18,10 +18,6 @@ const appRoutes: Routes = [
     pathMatch: "full"
   },
   {
-    path: "shopping-list", //domain/shopping-list
-    component: ShoppingListComponent
-  },
-  {
     path: "signup",
     component: SignupComponent
   },

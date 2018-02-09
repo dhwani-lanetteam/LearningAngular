@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { CockpitComponent } from './server/cockpit/cockpit.component';
 import { OnlyOddComponent } from './directivePractiseComponents/only-odd/only-odd.component';
 import { NgSwitchDemoComponent } from './directivePractiseComponents/ng-switch-component/ng-switch-demo.component';
@@ -38,13 +36,14 @@ import { SignupComponent } from './authentication/signup/signup.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RecipesModule } from "./recipes/recipes.module";
 import { SharedModule } from "./shared/shared.module";
+import { ShoppingListModule } from "./shopping-list/shopping-list.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
+    // ShoppingListComponent,
+    // ShoppingEditComponent,
     ServerComponent,
     CockpitComponent,
     OnlyOddComponent,
@@ -80,6 +79,7 @@ import { SharedModule } from "./shared/shared.module";
     * */
     AppShoppinglistRouting, //RouterModule.forRoot(appRoutes)
     RecipesModule, //RouterModule.forChild(recipesRoutes)
+    ShoppingListModule,
     SharedModule
   ],
   providers: [
