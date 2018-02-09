@@ -9,6 +9,7 @@ import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.compo
 import {RecipeStartComponent} from "./recipes/recipe-start/recipe-start.component";
 import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
 import {SignupComponent} from "./authentication/signup/signup.component";
+import {SigninComponent} from "./authentication/signin/signin.component";
 
 const appRoutes: Routes = [
   {
@@ -16,35 +17,6 @@ const appRoutes: Routes = [
     redirectTo: '/recipes', //domain/ only will be redirected to recipe component
     pathMatch: "full"
   },
-  {
-    path: "recipes", //domain/recipes
-    component: RecipesComponent,
-    children: [
-      {
-        path: "", //domain/recipes/
-        component: RecipeStartComponent
-      },
-      /*
-      * there was conflict
-      * http://localhost:4200/recipes/new
-      * http://localhost:4200/recipes/Test%20Recipe%203
-      * if :name path appears first then it will load RecipeDetailComponent
-      * so priority in defining routes matters
-      * */
-      {
-        path: "new",
-        component: RecipeEditComponent
-      },
-      {
-        path: ":id/edit",
-        component: RecipeEditComponent
-      },
-      {
-        path: ":id", //domain/recipes/recipename
-        component: RecipeDetailComponent,
-      }
-    ]
-},
   {
     path: "shopping-list", //domain/shopping-list
     component: ShoppingListComponent
@@ -54,17 +26,23 @@ const appRoutes: Routes = [
     component: SignupComponent
   },
   {
-    path: "not-found",
-    component: PageNotFoundComponent
-  },
-  {
-    path: '**',
-    component: ErrorPageComponent,
-    //passing static data to route
-    data: {
-      message: 'Page not found !! :('
-    }
+    path: "signin",
+    component: SigninComponent
   }
+  //------ the devil
+  // {
+  //   path: "not-found",
+  //   component: PageNotFoundComponent
+  // },
+  // {
+  //   path: '**',
+  //   component: ErrorPageComponent,
+  //   //passing static data to route
+  //   data: {
+  //     message: 'Page not found !!!!! :('
+  //   }
+  // }
+  //------- the devil
 ];
 
 @NgModule({
