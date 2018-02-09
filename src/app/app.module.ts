@@ -15,7 +15,7 @@ import { BaconDirective } from './directivePractiseComponents/more-on-renderer/b
 import { GoWildDirective } from './directivePractiseComponents/more-on-renderer/go-wild/go-wild.directive';
 import { GrayBgHighlightDirective } from './directivePractiseComponents/gray-bg-highlight/gray-bg-highlight.directive';
 import { UnlessDirective } from './directivePractiseComponents/unless/unless.directive';
-import {ShoppinglistService} from "./shopping-list/service/shoppinglist.service";
+import { ShoppinglistService } from "./shopping-list/service/shoppinglist.service";
 import { ServersComponent } from './routing/servers/servers.component';
 import { EditServerComponent } from './routing/servers/edit-server/edit-server.component';
 import { ServerComponent } from "./routing/servers/server/server.component";
@@ -37,6 +37,7 @@ import { DataService } from "./shared/data.service";
 import { SignupComponent } from './authentication/signup/signup.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RecipesModule } from "./recipes/recipes.module";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { RecipesModule } from "./recipes/recipes.module";
     * ema forChild use karelu 6.
     * */
     AppShoppinglistRouting, //RouterModule.forRoot(appRoutes)
-    RecipesModule //RouterModule.forChild(recipesRoutes)
+    RecipesModule, //RouterModule.forChild(recipesRoutes)
+    SharedModule
   ],
   providers: [
     ShoppinglistService,
