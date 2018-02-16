@@ -8,7 +8,9 @@ import { RecipeStartComponent } from "./recipe-start/recipe-start.component";
 
 const recipesRoutes: Routes = [
   {
-    path: "recipes", //domain/recipes
+    //--- changed for lazy loading
+    // path: "recipes", //domain/recipes
+    path: "", //domain/recipes
     component: RecipesComponent,
     children: [
       {

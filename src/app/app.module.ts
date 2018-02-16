@@ -2,7 +2,6 @@ import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CockpitComponent } from './server/cockpit/cockpit.component';
@@ -23,10 +22,11 @@ import { RecipeService } from "./recipes/service/recipe.service";
 import { DataService } from "./shared/data.service";
 import { SignupComponent } from './authentication/signup/signup.component';
 import { SigninComponent } from './authentication/signin/signin.component';
-import { RecipesModule } from "./recipes/recipes.module";
 import { SharedModule } from "./shared/shared.module";
 import { ShoppingListModule } from "./shopping-list/shopping-list.module";
 import { RoutindDemoModule } from "./routingDemo/routind-demo.module";
+import { HomeComponent } from './home/home.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import { RoutindDemoModule } from "./routingDemo/routind-demo.module";
     GrayBgHighlightDirective,
     UnlessDirective,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    HomeComponent
   ],
   imports: [
     HttpModule,
@@ -58,7 +59,7 @@ import { RoutindDemoModule } from "./routingDemo/routind-demo.module";
     * ema forChild use karelu 6.
     * */
     AppShoppinglistRouting, //RouterModule.forRoot(appRoutes)
-    RecipesModule, //RouterModule.forChild(recipesRoutes)
+    // RecipesModule, //RouterModule.forChild(recipesRoutes)
     ShoppingListModule,
     SharedModule,
     RoutindDemoModule
