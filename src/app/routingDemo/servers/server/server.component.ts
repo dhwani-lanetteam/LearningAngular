@@ -25,7 +25,7 @@ export class ServerComponent implements OnInit {
 
     //---- server is loaded in advance using resolver
     this.activatedRoute.data.subscribe((data: Data) => {
-      this.server = data['server']; //'server' shpould match with key defined in 'resolve' Offcourse !!!  check app-routing.module.ts
+      this.server = data['server']; //'server' should match with key defined in 'resolve' Offcourse !!!  check app-routing.module.ts
 
     });
 
