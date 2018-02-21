@@ -3,7 +3,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { CockpitComponent } from './server/cockpit/cockpit.component';
 import { OnlyOddComponent } from './directivePractiseComponents/only-odd/only-odd.component';
 import { NgSwitchDemoComponent } from './directivePractiseComponents/ng-switch-component/ng-switch-demo.component';
@@ -25,13 +24,12 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { SharedModule } from "./shared/shared.module";
 import { ShoppingListModule } from "./shopping-list/shopping-list.module";
 import { RoutindDemoModule } from "./routingDemo/routind-demo.module";
-import { HomeComponent } from './home/home.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     CockpitComponent,
     OnlyOddComponent,
     NgSwitchDemoComponent,
@@ -43,8 +41,7 @@ import {FormsModule} from "@angular/forms";
     GrayBgHighlightDirective,
     UnlessDirective,
     SignupComponent,
-    SigninComponent,
-    HomeComponent
+    SigninComponent
   ],
   imports: [
     HttpModule,
@@ -62,7 +59,8 @@ import {FormsModule} from "@angular/forms";
     // RecipesModule, //RouterModule.forChild(recipesRoutes)
     ShoppingListModule,
     SharedModule,
-    RoutindDemoModule
+    RoutindDemoModule,
+    CoreModule
   ],
   providers: [
     ShoppinglistService,

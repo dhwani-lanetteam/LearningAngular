@@ -2,7 +2,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {SignupComponent} from "./authentication/signup/signup.component";
 import {SigninComponent} from "./authentication/signin/signin.component";
-import {HomeComponent} from "./home/home.component";
+import {HomeComponent} from "./core/home/home.component";
 
 const appRoutes: Routes = [
   // {
