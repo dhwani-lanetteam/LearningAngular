@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { HelpeerServiceService } from "../shared/helpeer-service.service";
 import { ShoppinglistService } from "./service/shoppinglist.service";
-import { Subscription } from "rxjs/Subscription";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 
@@ -12,30 +11,16 @@ import { Observable } from "rxjs";
   styleUrls: ['./shopping-list.component.css'],
   providers: [ HelpeerServiceService ]
 })
-export class ShoppingListComponent implements OnInit, OnDestroy {
+export class ShoppingListComponent implements OnInit {
 
   shoppilnListState: Observable<{ingredients: Ingredient[]}>;
-  // private subscription: Subscription = new Subscription();
-  private ingredientsChangesSubscription = new Subscription();
 
   //--- type specified for store should fit the global state.
   constructor(private shoppinglistService: ShoppinglistService, private store: Store<{shoppingList: {ingredients: Ingredient[]}}>) { }
 
   ngOnInit() {
-
-    // this.ingredients = this.shoppinglistService.getIngredients();
     this.shoppilnListState = this.store.select('shoppingList'); //--- In global state I have shoppingList part, which points to shoppingListReducer, there we have set initial state as javascript object with ingredients property. Slicing the store. selectiong the part in which I am interested.
-    // this.ingredientsChangesSubscription = this.shoppinglistService.ingredientsChangesSbjct.subscribe((ings: [Ingredient]) => {
-    //   console.log("this ing is added : " + ings);
-    //   this.ingredients = ings;
-    // });
-  }
 
-  ngOnDestroy(){
-    //--- as I have created my own subject I need to unsubscribe it as angular won't manage it.
-    //--- to prevent any memory leak unsubscribe it in ngOnDestroy
-    // this.subscription.unsubscribe();
-    this.ingredientsChangesSubscription.unsubscribe();
   }
 
   onEditItem(ingredient: Ingredient, index: number){
