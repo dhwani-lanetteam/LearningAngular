@@ -3,6 +3,7 @@ import {NgModule} from "@angular/core";
 import {SignupComponent} from "./authentication/signup/signup.component";
 import {SigninComponent} from "./authentication/signin/signin.component";
 import {HomeComponent} from "./core/home/home.component";
+import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 
 const appRoutes: Routes = [
   // {
@@ -19,6 +20,10 @@ const appRoutes: Routes = [
   {
     path: "recipes",
     loadChildren: "./recipes/recipes.module#RecipesModule"
+  },
+  {
+    path: "shopping-list", //domain/shopping-list
+    component: ShoppingListComponent
   },
   {
     path: "signup",

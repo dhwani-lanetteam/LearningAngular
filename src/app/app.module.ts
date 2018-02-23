@@ -22,10 +22,13 @@ import { DataService } from "./shared/data.service";
 import { SignupComponent } from './authentication/signup/signup.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SharedModule } from "./shared/shared.module";
-import { ShoppingListModule } from "./shopping-list/shopping-list.module";
 import { RoutindDemoModule } from "./routingDemo/routind-demo.module";
 import { FormsModule } from "@angular/forms";
 import { CoreModule } from "./core/core.module";
+import { StoreModule } from "@ngrx/store";
+import { shoppingListReducer } from "./shopping-list/shopping-edit/store/shopping-list.reducers";
+import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
+import { ShoppingEditComponent } from "./shopping-list/shopping-edit/shopping-edit.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { CoreModule } from "./core/core.module";
     GrayBgHighlightDirective,
     UnlessDirective,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent
   ],
   imports: [
     HttpModule,
@@ -57,10 +62,10 @@ import { CoreModule } from "./core/core.module";
     * */
     AppShoppinglistRouting, //RouterModule.forRoot(appRoutes)
     // RecipesModule, //RouterModule.forChild(recipesRoutes)
-    ShoppingListModule,
     SharedModule,
     RoutindDemoModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot({ shoppingList: shoppingListReducer}) //--- by adding this line ngrx setup a store, register shopiinglistreducer as one thing that can edit the store, and initialState as one piece of overall application state
   ],
   providers: [
     ShoppinglistService,
