@@ -35,6 +35,29 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
           ...action.payload //--- as we have multiple payload now, I used spread operator.
         ]
       }
+    case ShoppingListActions.DELETE_INGREDIENT:
+      return {
+
+      }
+    case ShoppingListActions.UPDATE_INGREDIENT:
+      const newIng = state.ingredients[action.payload.index];
+      const updatedIng = {
+        ...newIng,
+        ...action.payload.newIngredient
+      };
+      const ings = [...state.ingredients];
+      ings[action.payload.index] = updatedIng;
+      return {
+        ...state,
+        ingredients: ings
+      }
+    case ShoppingListActions.DELETE_INGREDIENT:
+      const oldIngs = [...state.ingredients];
+          oldIngs.splice(action.payload, 1);
+          return {
+            ...state,
+            ingredients: oldIngs
+          }
     default:
       return state;
   }
